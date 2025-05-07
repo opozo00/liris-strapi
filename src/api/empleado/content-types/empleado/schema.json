@@ -1,0 +1,42 @@
+{
+  "kind": "collectionType",
+  "collectionName": "empleados",
+  "info": {
+    "singularName": "empleado",
+    "pluralName": "empleados",
+    "displayName": "Empleado",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true,
+    "privateAttributes": [
+      "createdAt",
+      "updatedAt",
+      "publishedAt"
+    ]
+  },
+  "attributes": {
+    "nombre": {
+      "type": "string",
+      "required": true
+    },
+    "apellido": {
+      "type": "string",
+      "required": true
+    },
+    "correo": {
+      "type": "email",
+      "unique": true,
+      "required": true
+    },
+    "cedula": {
+      "type": "string",
+      "unique": true,
+      "required": true,
+      "minLength": 10
+    },
+    "telefono": {
+      "type": "string"
+    }
+  }
+}

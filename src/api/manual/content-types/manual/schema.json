@@ -1,0 +1,32 @@
+{
+  "kind": "collectionType",
+  "collectionName": "manuales",
+  "info": {
+    "singularName": "manual",
+    "pluralName": "manuales",
+    "displayName": "manual",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true,
+    "privateAttributes": [
+      "createdAt",
+      "updatedAt",
+      "publishedAt"
+    ]
+  },
+  "attributes": {
+    "titulo": {
+      "type": "string"
+    },
+    "descripcion": {
+      "type": "text"
+    },
+    "pdf_url": {
+      "type": "string"
+    },
+    "fecha_actualizacion": {
+      "type": "date"
+    }
+  }
+}

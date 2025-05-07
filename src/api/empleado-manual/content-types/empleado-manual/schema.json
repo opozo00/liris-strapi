@@ -1,0 +1,31 @@
+{
+  "kind": "collectionType",
+  "collectionName": "empleados_manuales",
+  "info": {
+    "singularName": "empleado-manual",
+    "pluralName": "empleados-manuales",
+    "displayName": "Empleado_Manual",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true,
+    "privateAttributes": [
+      "createdAt",
+      "updatedAt",
+      "publishedAt"
+    ]
+  },
+  "attributes": {
+    "leido": {
+      "type": "boolean",
+      "default": false
+    },
+    "fecha_lectura": {
+      "type": "date"
+    },
+    "progreso_lectura": {
+      "type": "decimal",
+      "default": 0
+    }
+  }
+}

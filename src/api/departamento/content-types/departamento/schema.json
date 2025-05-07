@@ -1,0 +1,43 @@
+{
+  "kind": "collectionType",
+  "collectionName": "departamentos",
+  "info": {
+    "singularName": "departamento",
+    "pluralName": "departamentos",
+    "displayName": "Departamento",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true,
+    "privateAttributes": [
+      "createdAt",
+      "updatedAt",
+      "publishedAt"
+    ]
+  },
+  "attributes": {
+    "nombre": {
+      "type": "string",
+      "unique": true,
+      "required": true
+    },
+    "telefono": {
+      "type": "string",
+      "unique": false
+    },
+    "linea_negocio": {
+      "type": "string",
+      "required": true
+    },
+    "ubicacion": {
+      "type": "string",
+      "required": true
+    },
+    "cargos": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::cargo.cargo",
+      "mappedBy": "id_departamento"
+    }
+  }
+}

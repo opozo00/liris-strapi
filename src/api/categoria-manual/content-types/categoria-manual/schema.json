@@ -1,0 +1,26 @@
+{
+  "kind": "collectionType",
+  "collectionName": "categorias_manuales",
+  "info": {
+    "singularName": "categoria-manual",
+    "pluralName": "categorias-manuales",
+    "displayName": "Categoria_Manual",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true,
+    "privateAttributes": [
+      "createdAt",
+      "updatedAt",
+      "publishedAt"
+    ]
+  },
+  "attributes": {
+    "nombre": {
+      "type": "string"
+    },
+    "descripcion": {
+      "type": "text"
+    }
+  }
+}
