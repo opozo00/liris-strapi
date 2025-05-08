@@ -1,11 +1,10 @@
 {
   "kind": "collectionType",
-  "collectionName": "cargos",
+  "collectionName": "positions",
   "info": {
-    "singularName": "cargo",
-    "pluralName": "cargos",
-    "displayName": "Cargo",
-    "description": ""
+    "singularName": "position",
+    "pluralName": "positions",
+    "displayName": "Position"
   },
   "options": {
     "draftAndPublish": false,
@@ -16,25 +15,23 @@
     ]
   },
   "attributes": {
-    "nombre": {
+    "name": {
       "type": "string",
       "unique": true
     },
-    "nivel": {
+    "level": {
       "type": "enumeration",
       "enum": [
         "junior",
         "mid-senior",
         "senior",
-        "gerente",
-        "presidente"
+        "manager"
       ]
     },
-    "departamento": {
+    "department": {
       "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::departamento.departamento",
-      "inversedBy": "cargos"
+      "relation": "oneToOne",
+      "target": "api::department.department"
     }
   }
 }

@@ -8,7 +8,7 @@
     "description": ""
   },
   "options": {
-    "draftAndPublish": true,
+    "draftAndPublish": false,
     "privateAttributes": [
       "createdAt",
       "updatedAt",
@@ -37,7 +37,7 @@
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::cargo.cargo",
-      "mappedBy": "id_departamento"
+      "mappedBy": "departamento"
     }
   }
 }

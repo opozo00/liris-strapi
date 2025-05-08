@@ -4,10 +4,11 @@
   "info": {
     "singularName": "employee",
     "pluralName": "employees",
-    "displayName": "employee"
+    "displayName": "employee",
+    "description": ""
   },
   "options": {
-    "draftAndPublish": true,
+    "draftAndPublish": false,
     "privateAttributes": [
       "createdAt",
       "updatedAt",
@@ -35,6 +36,21 @@
       "type": "string",
       "minLength": 10,
       "unique": true
+    },
+    "department": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::department.department"
+    },
+    "boss": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::employee.employee"
+    },
+    "position": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::position.position"
     }
   }
 }

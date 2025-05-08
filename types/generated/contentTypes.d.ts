@@ -382,14 +382,13 @@ export interface ApiCargoCargo extends Struct.CollectionTypeSchema {
     singularName: 'cargo';
   };
   options: {
-    draftAndPublish: true;
-    privateAttributes: ['createdAt', 'updatedAt', 'publishedAt'];
+    draftAndPublish: false;
   };
   attributes: {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    id_departamento: Schema.Attribute.Relation<
+    departamento: Schema.Attribute.Relation<
       'manyToOne',
       'api::departamento.departamento'
     >;
@@ -417,7 +416,7 @@ export interface ApiCategoriaManualCategoriaManual
     singularName: 'categoria-manual';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
     privateAttributes: ['createdAt', 'updatedAt', 'publishedAt'];
   };
   attributes: {
@@ -449,7 +448,7 @@ export interface ApiDepartamentoDepartamento
     singularName: 'departamento';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
     privateAttributes: ['createdAt', 'updatedAt', 'publishedAt'];
   };
   attributes: {
@@ -476,6 +475,36 @@ export interface ApiDepartamentoDepartamento
   };
 }
 
+export interface ApiDepartmentDepartment extends Struct.CollectionTypeSchema {
+  collectionName: 'departments';
+  info: {
+    displayName: 'Department';
+    pluralName: 'departments';
+    singularName: 'department';
+  };
+  options: {
+    draftAndPublish: false;
+    privateAttributes: ['createdAt', 'updatedAt', 'publishedAt'];
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::department.department'
+    > &
+      Schema.Attribute.Private;
+    location: Schema.Attribute.String;
+    name: Schema.Attribute.String & Schema.Attribute.Unique;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiEmpleadoManualEmpleadoManual
   extends Struct.CollectionTypeSchema {
   collectionName: 'empleados_manuales';
@@ -486,7 +515,7 @@ export interface ApiEmpleadoManualEmpleadoManual
     singularName: 'empleado-manual';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
     privateAttributes: ['createdAt', 'updatedAt', 'publishedAt'];
   };
   attributes: {
@@ -518,7 +547,7 @@ export interface ApiEmpleadoEmpleado extends Struct.CollectionTypeSchema {
     singularName: 'empleado';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
     privateAttributes: ['createdAt', 'updatedAt', 'publishedAt'];
   };
   attributes: {
@@ -553,15 +582,16 @@ export interface ApiEmpleadoEmpleado extends Struct.CollectionTypeSchema {
 export interface ApiEmployeeEmployee extends Struct.CollectionTypeSchema {
   collectionName: 'employees';
   info: {
+    description: '';
     displayName: 'employee';
     pluralName: 'employees';
     singularName: 'employee';
   };
   options: {
-    draftAndPublish: true;
-    privateAttributes: ['createdAt', 'updatedAt', 'publishedAt'];
+    draftAndPublish: false;
   };
   attributes: {
+    boss: Schema.Attribute.Relation<'oneToOne', 'api::employee.employee'>;
     cedula: Schema.Attribute.String &
       Schema.Attribute.Unique &
       Schema.Attribute.SetMinMaxLength<{
@@ -570,6 +600,10 @@ export interface ApiEmployeeEmployee extends Struct.CollectionTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    department: Schema.Attribute.Relation<
+      'oneToOne',
+      'api::department.department'
+    >;
     email: Schema.Attribute.Email &
       Schema.Attribute.Required &
       Schema.Attribute.Unique;
@@ -582,6 +616,7 @@ export interface ApiEmployeeEmployee extends Struct.CollectionTypeSchema {
       Schema.Attribute.Private;
     name: Schema.Attribute.String & Schema.Attribute.Required;
     phone: Schema.Attribute.String;
+    position: Schema.Attribute.Relation<'oneToOne', 'api::position.position'>;
     publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -598,7 +633,7 @@ export interface ApiManualManual extends Struct.CollectionTypeSchema {
     singularName: 'manual';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
     privateAttributes: ['createdAt', 'updatedAt', 'publishedAt'];
   };
   attributes: {
@@ -616,6 +651,41 @@ export interface ApiManualManual extends Struct.CollectionTypeSchema {
     pdf_url: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
     titulo: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiPositionPosition extends Struct.CollectionTypeSchema {
+  collectionName: 'positions';
+  info: {
+    displayName: 'Position';
+    pluralName: 'positions';
+    singularName: 'position';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    department: Schema.Attribute.Relation<
+      'oneToOne',
+      'api::department.department'
+    >;
+    level: Schema.Attribute.Enumeration<
+      ['junior', 'mid-senior', 'senior', 'manager']
+    >;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::position.position'
+    > &
+      Schema.Attribute.Private;
+    name: Schema.Attribute.String & Schema.Attribute.Unique;
+    publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1134,10 +1204,12 @@ declare module '@strapi/strapi' {
       'api::cargo.cargo': ApiCargoCargo;
       'api::categoria-manual.categoria-manual': ApiCategoriaManualCategoriaManual;
       'api::departamento.departamento': ApiDepartamentoDepartamento;
+      'api::department.department': ApiDepartmentDepartment;
       'api::empleado-manual.empleado-manual': ApiEmpleadoManualEmpleadoManual;
       'api::empleado.empleado': ApiEmpleadoEmpleado;
       'api::employee.employee': ApiEmployeeEmployee;
       'api::manual.manual': ApiManualManual;
+      'api::position.position': ApiPositionPosition;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;
