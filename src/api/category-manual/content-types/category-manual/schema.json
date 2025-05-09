@@ -1,10 +1,10 @@
 {
   "kind": "collectionType",
-  "collectionName": "departments",
+  "collectionName": "category_manuals",
   "info": {
-    "singularName": "department",
-    "pluralName": "departments",
-    "displayName": "Department"
+    "singularName": "category-manual",
+    "pluralName": "category-manuals",
+    "displayName": "Category Manual"
   },
   "options": {
     "draftAndPublish": false,
@@ -19,14 +19,14 @@
       "type": "string",
       "unique": true
     },
-    "location": {
-      "type": "string"
+    "description": {
+      "type": "text"
     },
     "manuals": {
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::manual.manual",
-      "mappedBy": "department"
+      "mappedBy": "category_manual"
     }
   }
 }

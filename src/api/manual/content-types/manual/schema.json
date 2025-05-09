@@ -27,6 +27,18 @@
     },
     "fecha_actualizacion": {
       "type": "date"
+    },
+    "department": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::department.department",
+      "inversedBy": "manuals"
+    },
+    "category_manual": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::category-manual.category-manual",
+      "inversedBy": "manuals"
     }
   }
 }

@@ -1,0 +1,39 @@
+{
+  "kind": "collectionType",
+  "collectionName": "manual_employees",
+  "info": {
+    "singularName": "manual-employee",
+    "pluralName": "manual-employees",
+    "displayName": "Manual Employee"
+  },
+  "options": {
+    "draftAndPublish": false,
+    "privateAttributes": [
+      "createdAt",
+      "updatedAt",
+      "publishedAt"
+    ]
+  },
+  "attributes": {
+    "employees": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::employee.employee"
+    },
+    "manuals": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::manual.manual"
+    },
+    "leido": {
+      "type": "boolean"
+    },
+    "read_date": {
+      "type": "date"
+    },
+    "read_progress": {
+      "type": "decimal",
+      "default": 0
+    }
+  }
+}
